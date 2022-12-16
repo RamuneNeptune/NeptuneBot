@@ -1,7 +1,12 @@
 # NeptuneBot
 ### A discord bot used to check QModManager log files for relevant information
 <br></br>
+## Looking for something?
+* [How does it work?]
+* [Current checks]
+* [Usage examples]
 
+<br></br>
 ## How does it work?
 ---
 #### 1. A user sends a log file in the Subnautica Modding discord server

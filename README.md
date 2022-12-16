@@ -3,7 +3,7 @@
 ---
 ### ...
 
-# Checks for:
+## Checks for:
 ---
 #### `• QModManager & SMLHelper Versions`
 #### `• Game installation path`

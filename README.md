@@ -2,9 +2,9 @@
 ### A discord bot used to check QModManager log files for relevant information
 <br></br>
 ## Looking for something?
-* [How does it work?]
-* [Current checks]
-* [Usage examples]
+* [How does it work?](https://github.com/RamuneNeptune/NeptuneBot/blob/main/README.md#how-does-it-work)
+* [Current checks]()
+* [Usage examples]()
 
 <br></br>
 ## How does it work?

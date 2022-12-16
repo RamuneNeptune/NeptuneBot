@@ -4,9 +4,11 @@
 
 ---
 ## Looking for something?
+##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 * [How does it work?](https://github.com/RamuneNeptune/NeptuneBot/blob/main/README.md#how-does-it-work)
 * [Current checks](https://github.com/RamuneNeptune/NeptuneBot/blob/main/README.md#currently-have-implemented-checks-for)
 * [Usage examples](https://github.com/RamuneNeptune/NeptuneBot#some-usage-examples)
+##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ---
 
 <br></br>
@@ -26,7 +28,6 @@
 
 ---
 ## Currently have implemented checks for:
-##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #### `• ThunderstoreModManager, Vortex, and Nitrox`
 #### `• QModManager & SMLHelper Versions`
 #### `• Mods that failed to load`
@@ -41,7 +42,6 @@
 #### `• Timestamp`
 #### `• Pirates!`
 #### `+ A bunch of common issues..`
-##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ---
 
 <br></br>

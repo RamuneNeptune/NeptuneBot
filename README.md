@@ -28,6 +28,7 @@
 
 ---
 ## Currently have implemented checks for:
+##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  * ThunderstoreModManager, Vortex, and Nitrox
  * QModManager & SMLHelper Versions
  * Mods that failed to load
@@ -41,7 +42,7 @@
  * Game build
  * Timestamp
  * Pirates!
-
+##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 + Checks for a bunch of common issues..  (Like steamworks drm error)
 ---
 

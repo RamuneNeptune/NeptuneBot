@@ -4,13 +4,15 @@
 ---
 
 ## **Checks for:**
-### - Timestamp
-### - Game build
-### - QModManager & SMLHelper Versions
-### - Game installation path
-### - Missing dependencies
-### - Outdated dependencies
-### - Source code 
+#### - QModManager & SMLHelper Versions
+#### - Game installation path
+#### - Game build
+#### - Timestamp
+
+#### - Missing dependencies
+#### - Outdated dependencies
+
+#### - Source code 
 ### - 
 ### - 
 ### - 

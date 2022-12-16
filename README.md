@@ -4,11 +4,11 @@
 
 ## How does it work?
 ---
-#### A user sends a log file in the Subnautica Modding discord server
-#### The bot downloads the log file
-#### Processes it for the relevant information
-#### Deletes the log file
-#### Sends the relevant information back in an embed
+#### 1. A user sends a log file in the Subnautica Modding discord server
+#### 2. The bot downloads the log file
+#### 3. Processes it for the relevant information
+#### 4. Sends the relevant information back in an embed
+#### 5. Deletes the log file
 ---
 <br></br>
 

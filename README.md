@@ -1,2 +1,4 @@
 # NeptuneBot
-### da log check bot
+### A discord bot used to check QModManager log files for relevant information
+
+

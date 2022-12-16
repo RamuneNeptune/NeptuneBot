@@ -41,7 +41,7 @@
  * Game build
  * Timestamp
  * Pirates!
- + A bunch of common issues..
++ A bunch of common issues..
 ---
 
 <br></br>

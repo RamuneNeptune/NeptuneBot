@@ -12,4 +12,5 @@
 #### `• Missing dependencies`
 #### `• Game build`
 #### `• Timestamp`
+#### `+ A bunch of common issues..`
 ---

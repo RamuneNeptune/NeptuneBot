@@ -3,7 +3,7 @@
 <br></br>
 
 ---
-## Looking for something?
+## Table of Contents
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 * [How does it work?](https://github.com/RamuneNeptune/NeptuneBot/blob/main/README.md#how-does-it-work)
 * [Current checks](https://github.com/RamuneNeptune/NeptuneBot/blob/main/README.md#currently-have-implemented-checks-for)

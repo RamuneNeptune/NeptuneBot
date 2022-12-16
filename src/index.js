@@ -20,8 +20,6 @@ const client = new Client({
 
 module.exports = client;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 //  Log to console on startup
 client.once(Events.ClientReady, c => {
 	 console.clear(); 
@@ -62,29 +60,6 @@ client.on('messageCreate', message => {
 		});
 	}
 });
-
-// listen for ">log"
-client.on('messageCreate', message => {
-	if (message.content.startsWith(">log")) {
-		if (message.member.roles.cache.has('1045566658858729483')) {
-				if (message.reference) {
-					message.channel.messages.fetch(message.reference.messageId).then(msg => {
-						if (msg.attachments.size > 0) {
-							msg.attachments.forEach(attachment => {
-								if (attachment.name.startsWith("qmodmanager_log") || attachment.name.startsWith("LogOutput")) {
-
-									download(attachment.url, attachment.id);
-									setTimeout(function() {
-										checkLog(attachment.id, message.channelId, message.author.username, message.author.avatarURL({ size: 128, format: 'png', dynamic: true }));
-									}, 1000);
-								}
-							});
-						}
-					});
-				}
-			}
-		}
-	});
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

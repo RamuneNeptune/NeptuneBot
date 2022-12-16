@@ -41,7 +41,8 @@
  * Game build
  * Timestamp
  * Pirates!
-+ A bunch of common issues..
+
++ Checks for a bunch of common issues..  (Like steamworks drm error)
 ---
 
 <br></br>

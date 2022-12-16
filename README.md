@@ -5,6 +5,7 @@
 
 ## Currently have implemented checks for:
 ---
+#### `• ThunderstoreModManager, Vortex, Nitrox`
 #### `• QModManager & SMLHelper Versions`
 #### `• Mods that failed to load`
 #### `• Game installation path`
@@ -16,6 +17,7 @@
 #### `• Mods loaded`
 #### `• Game build`
 #### `• Timestamp`
+#### `• Pirates!`
 #### `+ A bunch of common issues..`
 ---
 ### .

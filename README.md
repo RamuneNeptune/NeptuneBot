@@ -42,8 +42,8 @@
  * Game build
  * Timestamp
  * Pirates!
+#### + Common errors
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#### + Checks for a bunch of common issues..  (Like steamworks drm error)
 ---
 
 <br></br>

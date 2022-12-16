@@ -1,7 +1,5 @@
 ![](https://i.imgur.com/KPE7JiJ.png)
 
-### A discord bot used to check QModManager log files for relevant information 
-
 <br></br>
 
 ---

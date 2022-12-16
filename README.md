@@ -4,7 +4,7 @@
 ## Looking for something?
 * [How does it work?](https://github.com/RamuneNeptune/NeptuneBot/blob/main/README.md#how-does-it-work)
 * [Current checks](https://github.com/RamuneNeptune/NeptuneBot/blob/main/README.md#currently-have-implemented-checks-for)
-* [Usage examples]()
+* [Usage examples](https://github.com/RamuneNeptune/NeptuneBot#some-usage-examples)
 
 <br></br>
 ## How does it work?

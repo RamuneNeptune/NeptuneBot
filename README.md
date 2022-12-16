@@ -28,20 +28,20 @@
 
 ---
 ## Currently have implemented checks for:
-#### `• ThunderstoreModManager, Vortex, and Nitrox`
-#### `• QModManager & SMLHelper Versions`
-#### `• Mods that failed to load`
-#### `• Game installation path`
-#### `• Installed source code`
-#### `• Outdated dependencies`
-#### `• Missing dependencies`
-#### `• Missing mod.jsons`
-#### `• Duplicate mods`
-#### `• Mods loaded`
-#### `• Game build`
-#### `• Timestamp`
-#### `• Pirates!`
-#### `+ A bunch of common issues..`
+ * ThunderstoreModManager, Vortex, and Nitrox
+ * QModManager & SMLHelper Versions
+ * Mods that failed to load
+ * Outdated dependencies
+ * Game installation path
+ * Missing dependencies
+ * Installed source code
+ * Missing mod.jsons
+ * Duplicate mods
+ * Mods loaded
+ * Game build
+ * Timestamp
+ * Pirates!
+ * + A bunch of common issues..
 ---
 
 <br></br>

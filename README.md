@@ -10,18 +10,23 @@
 ---
 
 <br></br>
-## How does it work?
+
 ---
+## How does it work?
+##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #### 1. A user sends a log file in the Subnautica Modding discord server
 #### 2. The bot downloads the log file
 #### 3. Processes it for the relevant information
 #### 4. Sends the relevant information back in an embed
 #### 5. Deletes the log file
+##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ---
+
 <br></br>
 
-## Currently have implemented checks for:
 ---
+## Currently have implemented checks for:
+##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #### `• ThunderstoreModManager, Vortex, and Nitrox`
 #### `• QModManager & SMLHelper Versions`
 #### `• Mods that failed to load`
@@ -36,7 +41,9 @@
 #### `• Timestamp`
 #### `• Pirates!`
 #### `+ A bunch of common issues..`
+##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ---
+
 <br></br>
 
 ## Some usage examples

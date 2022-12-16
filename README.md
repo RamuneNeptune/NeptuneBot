@@ -42,7 +42,7 @@
  * Game build
  * Timestamp
  * Pirates!
-#### + Common errors
+##### + A bunch of common errors
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ---
 

@@ -1,2 +1,2 @@
 # NeptuneBot
-### idk
+### da log check bot

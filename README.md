@@ -6,13 +6,11 @@
 ## **Checks for:**
 #### - QModManager & SMLHelper Versions
 #### - Game installation path
+#### - Installed source code 
+#### - Outdated dependencies
+#### - Missing dependencies
 #### - Game build
 #### - Timestamp
-
-#### - Missing dependencies
-#### - Outdated dependencies
-
-#### - Source code 
 ### - 
 ### - 
 ### - 

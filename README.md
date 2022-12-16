@@ -1,9 +1,10 @@
 # Neptune
 ### A discord bot used to check QModManager log files for relevant information
-
 ---
+### ...
 
-## **Implemented checks for:**
+# Checks for:
+---
 #### `• QModManager & SMLHelper Versions`
 #### `• Game installation path`
 #### `• Installed source code`

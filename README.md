@@ -3,7 +3,7 @@
 ---
 ### .
 
-## Checks for:
+## Currently have implemented checks for:
 ---
 #### `• QModManager & SMLHelper Versions`
 #### `• Mods that failed to load`

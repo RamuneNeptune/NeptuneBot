@@ -43,7 +43,7 @@
  * Timestamp
  * Pirates!
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-+ Checks for a bunch of common issues..  (Like steamworks drm error)
+#### + Checks for a bunch of common issues..  (Like steamworks drm error)
 ---
 
 <br></br>

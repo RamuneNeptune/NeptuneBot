@@ -1,7 +1,7 @@
 # Neptune
 ### A discord bot used to check QModManager log files for relevant information
 ---
-### ...
+### .
 
 ## Checks for:
 ---
@@ -14,3 +14,8 @@
 #### `• Timestamp`
 #### `+ A bunch of common issues..`
 ---
+### .
+
+## Some usage examples
+---
+#### Here

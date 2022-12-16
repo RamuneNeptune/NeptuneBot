@@ -5,7 +5,7 @@
 
 ## Currently have implemented checks for:
 ---
-#### `• ThunderstoreModManager, Vortex, Nitrox`
+#### `• ThunderstoreModManager, Vortex, and Nitrox`
 #### `• QModManager & SMLHelper Versions`
 #### `• Mods that failed to load`
 #### `• Game installation path`

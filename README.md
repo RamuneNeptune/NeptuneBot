@@ -11,7 +11,7 @@
 #### `• Installed source code`
 #### `• Outdated dependencies`
 #### `• Missing dependencies`
-#### `• Missing mod.json's`
+#### `• Missing mod.jsons`
 #### `• Duplicate mods`
 #### `• Mods loaded`
 #### `• Game build`

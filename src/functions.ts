@@ -12,7 +12,7 @@
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 
 
-import { get } from 'http';
+import { get } from 'https';
 import { existsSync, mkdirSync, createWriteStream } from "fs";
 
 // DOWNLOAD LOG FILE

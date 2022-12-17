@@ -18,6 +18,9 @@
 
         // DOWNLOAD LOG FILE
         function download(url, id){
+            if (!fs.existsSync("./logs")) {
+                fs.mkdirSync("./logs");
+            }
             request.get(url)
                 .on('error', console.error)
                 .pipe(fs.createWriteStream("./logs/" + id + ".txt"));

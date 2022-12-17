@@ -1,4 +1,3 @@
 node_modules/
-src/config.json
-
-logs/*
+logs/
+dist/

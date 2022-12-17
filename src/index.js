@@ -10,7 +10,6 @@ const { EmbedBuilder } = require('discord.js');
 let { download } = require('./functions.js');
 const { token } = require('./config.json');
 
-path = require('path');
 fs = require('fs');
 
 const client = new Client({

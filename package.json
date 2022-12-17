@@ -1,15 +1,12 @@
 {
   "dependencies": {
-    "discord.js": "^14.6.0",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7",
-    "request": "^2.88.2"
+    "discord.js": "^14.6.0"
   },
   "name": "neptune_",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src"
   },
   "author": "",
   "license": "ISC",

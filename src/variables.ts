@@ -64,9 +64,5 @@ export default {
 
     steamArray,
     epicArray,
-    msArray,
-
-    // Other
-    n,
-    div
+    msArray
 }

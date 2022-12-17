@@ -4,10 +4,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-let { isDebug, isWrongGame, hasCrash, shaderError, minimumReqError, qmmError, expError, calendarError, symlinksArray, drmArray, pirateArray, vortexArray, nitroxArray, n, msg, div } = require('./variables.js');
-const { Client, Events, GatewayIntentBits } = require('discord.js');
-const { EmbedBuilder } = require('discord.js');
-let { download } = require('./functions.js');
+let { isDebug, isWrongGame, hasCrash, shaderError, minimumReqError, qmmError, expError, calendarError, symlinksArray, drmArray, pirateArray, vortexArray, nitroxArray, msg } = require('./variables.js').default;
+const { Client, EmbedBuilder, Events, GatewayIntentBits } = require('discord.js');
+const { download } = require('./functions.js').default;
 const { token } = require('./config.json');
 
 fs = require('fs');
@@ -209,14 +208,14 @@ function checkLog(id, channelId, username, avatarURL) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		checkString(isWrongGame, "Probably using wrong QMM for game" + n);
-		checkString(qmmError, "Probably using wrong QMM version (or playing exp)"+ n);
-		checkString(isDebug, "Please disable debug logs in Options > Mods > QModManager" + n);
-		checkString(calendarError, "Calendar error, try changing your system date to a gregorian based date" + n);
-		checkString(shaderError, "Shader error, desperationfighter didn't explain the fix for this" + n);
-		checkString(minimumReqError, "Minimum system requirements for the game not met" + n);
-		checkString(expError, "Loaded a savegame from experimental" + n);
-		checkString(hasCrash, "Log contains a crash" + n);
+		checkString(isWrongGame, "Probably using wrong QMM for game\n");
+		checkString(qmmError, "Probably using wrong QMM version (or playing exp)\n");
+		checkString(isDebug, "Please disable debug logs in Options > Mods > QModManager\n");
+		checkString(calendarError, "Calendar error, try changing your system date to a gregorian based date\n");
+		checkString(shaderError, "Shader error, desperationfighter didn't explain the fix for this\n");
+		checkString(minimumReqError, "Minimum system requirements for the game not met\n");
+		checkString(expError, "Loaded a savegame from experimental\n");
+		checkString(hasCrash, "Log contains a crash\n");
 
         if(msg != "") {
 			embedSN.addFields({ name: 'Issues Found', value: "```" + msg + "```" })

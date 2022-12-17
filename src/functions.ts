@@ -16,7 +16,7 @@ import { get } from 'http';
 import { existsSync, mkdirSync, createWriteStream } from "fs";
 
 // DOWNLOAD LOG FILE
-function download(url: string, id: string){
+export function download(url: string, id: string){
     if (!existsSync("./logs")) {
         mkdirSync("./logs");
     }
@@ -26,11 +26,3 @@ function download(url: string, id: string){
     });
     console.log(`Processing a log file`);
 }
-
-//⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
-
-export default {
-    download,
-}
-
-//⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//

@@ -188,7 +188,7 @@ function checkLog(id, channelId, username, avatarURL) {
 			{ name: 'SMLHelper', value: "```" + sml  + " for " + builtForSML + "```", inline: true },
 			{ name: 'Information', value: "```" + date +  `\n` + "Subnautica " + build+ `\n` + mods + " mods loaded" + "```" },
 		)
-		.setFooter({ text: `${username}`, iconURL: `${avatarURL}` })
+		.setFooter({ text: `${username}`, iconURL: avatarURL ? `${avatarURL}` : null })
 
 
 		const embedBZ = new EmbedBuilder()
@@ -199,13 +199,13 @@ function checkLog(id, channelId, username, avatarURL) {
 			{ name: 'SMLHelper', value: "```" + sml  + " for " + builtForSML + "```", inline: true },
 			{ name: 'Information', value: "```" + date +  `\n` + "Below Zero " + build+ `\n` + mods + " mods loaded" + "```" },
 		)
-		.setFooter({ text: `${username}`, iconURL: `${avatarURL}` })
+		.setFooter({ text: `${username}`, iconURL: avatarURL ? `${avatarURL}` : null })
 
 		const embedPR = new EmbedBuilder()
 		.setColor('#ff0000')
 		.setTitle(`🏴‍☠️ Ahoy, matey! 🏴‍☠️`)
 		.setDescription('**Unfortunately helping pirates is against our** <#324207672293326848>!' + `\n` + `\n` + "Buy the game if you'd like support with modding" + `\n` + "You can use https://isthereanydeal.com/ to find discounts")
-		.setFooter({ text: `${username}` + ", welcome to the pirate club!", iconURL: `${avatarURL}` })
+		.setFooter({ text: `${username}` + ", welcome to the pirate club!", iconURL: avatarURL ? `${avatarURL}` : null })
 		
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

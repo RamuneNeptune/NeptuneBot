@@ -11,24 +11,25 @@
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 
-const http = require('http');
-const fs = require(`fs`);
+
+import { get } from 'http';
+import { existsSync, mkdirSync, createWriteStream } from `fs`;
 
 // DOWNLOAD LOG FILE
 function download(url, id){
-    if (!fs.existsSync("./logs")) {
-        fs.mkdirSync("./logs");
+    if (!existsSync("./logs")) {
+        mkdirSync("./logs");
     }
-    http.get(url, (result) => {
+    get(url, (result) => {
         result.on("error", (err) => console.error(err));
-        result.pipe(fs.createWriteStream("./logs/" + id + ".txt"));
+        result.pipe(createWriteStream("./logs/" + id + ".txt"));
     });
     console.log(`Processing a log file`);
 }
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 
-module.exports = {
+export default {
     download,
 }
 

@@ -4,7 +4,8 @@
       "allowJs": true,
       "target": "es6",
       "moduleResolution": "node",
-      "resolveJsonModule": true
+      "resolveJsonModule": true,
+      "module": "commonjs"
     },
     "include": ["./src/**/*"]
   }

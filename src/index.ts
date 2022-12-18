@@ -20,9 +20,9 @@ module.exports = client;
 
 //  Log to console on startup
 client.once(Events.ClientReady, _ => {
-	 console.clear(); 
-	 console.log(`\x1b[32m%s\x1b[0m`, 
-	 `  
+	console.clear(); 
+	console.log(`\x1b[32m%s\x1b[0m`, 
+	`  
 	 ██╗███╗   ███╗     █████╗ ██╗    ██╗ █████╗ ██╗  ██╗███████╗
 	 ██║████╗ ████║    ██╔══██╗██║    ██║██╔══██╗██║ ██╔╝██╔════╝
 	 ██║██╔████╔██║    ███████║██║ █╗ ██║███████║█████╔╝ █████╗  
@@ -43,7 +43,7 @@ client.login(token);
 // Listen for log files
 client.on('messageCreate', message => {
 	if (message.attachments.size > 0) {
-		for (let [_, attachment] of message.attachments) {
+		for (const [_, attachment] of message.attachments) {
 			if (attachment.name.startsWith("qmodmanager_log") || attachment.name.startsWith("LogOutput")) {
 
 				download(attachment.url, attachment.id);
@@ -84,7 +84,7 @@ function checkLog(id: Snowflake, channelId: Snowflake, username: string, avatarU
         let msg = "";
 
 		function checkArray(arrayToSearch: string[], title: string, description: string) {
-			for (var i = 0; i < arrayToSearch.length; i++) {
+			for (let i = 0; i < arrayToSearch.length; i++) {
 				if (data.includes(arrayToSearch[i])) {
 					embed.addFields({ name: title, value: description })
 					break;
@@ -93,7 +93,7 @@ function checkLog(id: Snowflake, channelId: Snowflake, username: string, avatarU
 		}
 
 		function checkPirateArray(arrayToSearch: string[]) {
-			for (var i = 0; i < arrayToSearch.length; i++) {
+			for (let i = 0; i < arrayToSearch.length; i++) {
 				if (data.includes(arrayToSearch[i])) {
 					return true;
 				}
@@ -245,4 +245,4 @@ function checkLog(id: Snowflake, channelId: Snowflake, username: string, avatarU
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	}
-)};     // The end of the function!
+)}     // The end of the function!

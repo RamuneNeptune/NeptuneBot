@@ -5,7 +5,7 @@
 
 
 import { isDebug, isWrongGame, hasCrash, shaderError, minimumReqError, qmmError, expError, calendarError, symlinksArray, drmArray, pirateArray, vortexArray, nitroxArray } from './variables';
-import { Client, EmbedBuilder, Events, GatewayIntentBits, TextChannel } from 'discord.js';
+import { Attachment, Client, EmbedBuilder, Events, GatewayIntentBits, Snowflake, TextChannel } from 'discord.js';
 import { download } from './functions';
 import { token } from './config.json';
 
@@ -19,7 +19,7 @@ const client = new Client({
 module.exports = client;
 
 //  Log to console on startup
-client.once(Events.ClientReady, c => {
+client.once(Events.ClientReady, _ => {
 	 console.clear(); 
 	 console.log(`\x1b[32m%s\x1b[0m`, 
 	 `  
@@ -28,7 +28,7 @@ client.once(Events.ClientReady, c => {
 	 ██║██╔████╔██║    ███████║██║ █╗ ██║███████║█████╔╝ █████╗  
 	 ██║██║╚██╔╝██║    ██╔══██║██║███╗██║██╔══██║██╔═██╗ ██╔══╝  
 	 ██║██║ ╚═╝ ██║    ██║  ██║╚███╔███╔╝██║  ██║██║  ██╗███████╗
-	 ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝` + `\n`)
+	 ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝` + `\n`);
 console.log(`\x1b[34m%s\x1b[0m`, `▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃` + `\n`);
 });
 client.login(token);
@@ -43,19 +43,19 @@ client.login(token);
 // Listen for log files
 client.on('messageCreate', message => {
 	if (message.attachments.size > 0) {
-		message.attachments.forEach(attachment => {
+		for (let [_, attachment] of message.attachments) {
 			if (attachment.name.startsWith("qmodmanager_log") || attachment.name.startsWith("LogOutput")) {
 
 				download(attachment.url, attachment.id);    
 				    
-				setTimeout(function() {
+				setTimeout(() => {
 					checkLog(attachment.id, message.channelId, message.author.username, message.author.avatarURL({ size: 128, extension: 'png' }));
 				}, 1000);   
 
 			} else {
 				return;
 			}
-		});
+		}
 	}
 });
 
@@ -78,12 +78,12 @@ client.on('messageCreate', message => {
 
 
 // KEEP IN MIND THIS IS THE START OF THE FUNCTION, EVERYTHING AFTER THIS IS INSIDE THE FUNCTION
-function checkLog(id, channelId, username, avatarURL) {
-    fs.readFile("./logs/" + id + ".txt", 'utf8', function(err, data) {
+function checkLog(id: Snowflake, channelId: Snowflake, username: string, avatarURL: string) {
+    fs.readFile("./logs/" + id + ".txt", 'utf8', (err, data) => {
         if (err) throw err;
         let msg = "";
 
-		function checkArray(arrayToSearch, title, description) {
+		function checkArray(arrayToSearch: string[], title: string, description: string) {
 			for (var i = 0; i < arrayToSearch.length; i++) {
 				if (data.includes(arrayToSearch[i])) {
 					embedSN.addFields({ name: title, value: description })
@@ -93,7 +93,7 @@ function checkLog(id, channelId, username, avatarURL) {
 			}
 		}
 
-		function checkPirateArray(arrayToSearch) {
+		function checkPirateArray(arrayToSearch: string[]) {
 			for (var i = 0; i < arrayToSearch.length; i++) {
 				if (data.includes(arrayToSearch[i])) {
 					return true;
@@ -101,13 +101,13 @@ function checkLog(id, channelId, username, avatarURL) {
 			}
 		}
 
-		function checkString(stringToSearch, outputIfFound) {
+		function checkString(stringToSearch: string, outputIfFound: string) {
 			if (data.includes(stringToSearch)) {
 				msg += outputIfFound;
 			}
 		}
 
-		function checkRegex(regex) {
+		function checkRegex(regex: RegExp) {
 			if (data.match(regex)) {
 				return true;
 			} else {
@@ -244,15 +244,13 @@ function checkLog(id, channelId, username, avatarURL) {
 		checkArray(nitroxArray, '❔ Using Nitrox', 'This user has Nitrox installed, keep in mind this causes most mods to not work as intended');
 		checkArray(drmArray, "❗ Couldn't initialize Steamworks", 'Open Steam, at the top left click `Steam`, then click `Exit`');
 		checkArray(symlinksArray, "❗ Symlinks error", "Follow the instructions here:" + `\n` + "https://discord.com/channels/324207629784186882/902967502110343198/1035866881862672485");
-		// TODO: Not quite sure what was intended here as checkPirateArray only takes 1 argument
-		//checkPirateArray(pirateArray, "🏴‍☠️ This game is pirated 🏴‍☠️", " Buy the game if you want support with modding the game" + `\n` + "You can use https://isthereanydeal.com/ to find discounts");
+		// TODO: Not quite sure what was intended here as checkPirateArray only takes 1 argument, think this change is right
+		checkArray(pirateArray, "🏴‍☠️ This game is pirated 🏴‍☠️", " Buy the game if you want support with modding the game" + `\n` + "You can use https://isthereanydeal.com/ to find discounts");
 
-		setTimeout(function() {
-
-			let embedPR_bool = checkPirateArray(pirateArray);
+		setTimeout(() => {
 			const channel = client.channels.cache.get(channelId) as TextChannel;
 
-			if(embedPR_bool) {
+			if (checkPirateArray(pirateArray)) {
 				channel.send({ embeds: [embedPR] });
 			} else if (snPath != "N/A") {
 				channel.send({ embeds: [embedSN] });

@@ -3,10 +3,12 @@
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 
 // Import / export modules & variables
+
 export const { SlashCommandBuilder } = require('discord.js');
 import { Client, EmbedBuilder, Message, Events, GatewayIntentBits, TextChannel, Collection } from 'discord.js';
 import { token } from './config.json';
-import { /*-------------- General -------------*/  General_DebugMode, General_WrongQMM, General_Crash,
+import { /*-------------- Colors --------------*/  yellow, green, reset,
+         /*-------------- General -------------*/  General_DebugMode, General_WrongQMM, General_Crash,
          /*-------------- Errors --------------*/  Error_Shader, Error_MinimumReq, Error_Calender, Error_QMM,
          /*-------------- Arrays --------------*/  Array_Symlinks, Array_DRM, Array_Pirate, Array_Vortex, Array_Nitrox, Array_Store_Steam, Array_Store_Epic, Array_Store_Microsoft,
 
@@ -18,17 +20,8 @@ import { /*-------------- General -------------*/  General_DebugMode, General_Wr
          /*------------- Regex: Loaded/Failed Mods ----*/  Regex_LoadedMods, Regex_FailedMods, 
          /*------------- Regex: Duplicates & Source ---*/  Regex_DuplicateMods, Regex_SourceCode, 
         } from './vars';
-
 import path = require('path');
 import fs = require('fs');
-
-interface ExtraProperties {
-    commands: Collection<unknown, any>
-}
-
-declare module 'discord.js' {
-    interface Client extends ExtraProperties {}
-}
 
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
@@ -40,6 +33,13 @@ const client = new Client({
 	presence: { activities: [{ name: 'with logfiles..',  type: 0 }], status: 'dnd' } // Set presence
 });
 module.exports = client; // Export client to be referenced elsewhere 
+
+interface ExtraProperties { // Some bits to make command handler work
+    commands: Collection<unknown, any>
+}
+declare module 'discord.js' { // Some bits to make command handler work
+    interface Client extends ExtraProperties {} 
+}
 
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
@@ -56,13 +56,9 @@ client.once(Events.ClientReady, _ => {
 	 ██║██║╚██╔╝██║    ██╔══██║██║███╗██║██╔══██║██╔═██╗ ██╔══╝  
 	 ██║██║ ╚═╝ ██║    ██║  ██║╚███╔███╔╝██║  ██║██║  ██╗███████╗
 	 ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝` + `\n`);
-console.log(`\x1b[34m%s\x1b[0m`, `▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃` + `\n`);
+     console.log(`\x1b[34m%s\x1b[0m`, `▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃` + `\n`);
 });
 client.login(token); // Start bot with token
-
-const yellow = '\x1b[33m'; // Some ANSI color consts for later use
-const green = '\x1b[32m'; // Some ANSI color consts for later use
-const reset = '\x1b[0m'; // Some ANSI color consts for later use
 
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//

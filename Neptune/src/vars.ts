@@ -5,8 +5,17 @@
 //  ██║   ██║███████║██████╔╝███████╗
 //  ╚██╗ ██╔╝██╔══██║██╔══██╗╚════██║
 //   ╚████╔╝ ██║  ██║██║  ██║███████║
-//    ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝                                                                                                                                                                                                                                                       
+//    ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝       
 
+
+//⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
+
+
+// Colors
+
+export const yellow = '\x1b[33m'; // Some ANSI color consts for later use
+export const green = '\x1b[32m'; // Some ANSI color consts for later use
+export const reset = '\x1b[0m'; // Some ANSI color consts for later use
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 

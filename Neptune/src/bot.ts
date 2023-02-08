@@ -20,6 +20,7 @@ import { /*-------------- Colors --------------*/  yellow, green, reset,
          /*------------- Regex: Loaded/Failed Mods ----*/  Regex_LoadedMods, Regex_FailedMods, 
          /*------------- Regex: Duplicates & Source ---*/  Regex_DuplicateMods, Regex_SourceCode, 
         } from './vars';
+
 import path = require('path');
 import fs = require('fs');
 
@@ -29,9 +30,10 @@ import fs = require('fs');
 // Create a client for the bot, and set permissions and presence
 
 const client = new Client({
-	intents: [ GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent ], // Set perms
+    intents: [ GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent ], // Set perms
 	presence: { activities: [{ name: 'with logfiles..',  type: 0 }], status: 'dnd' } // Set presence
-});
+    });
+
 module.exports = client; // Export client to be referenced elsewhere 
 
 
@@ -41,16 +43,17 @@ module.exports = client; // Export client to be referenced elsewhere
 
 client.once(Events.ClientReady, _ => {
 	console.clear(); // Clear console
-	console.log(`\x1b[32m%s\x1b[0m`, // Log "IM AWAKE" to console
+    console.log(`\x1b[32m%s\x1b[0m`, // Log "IM AWAKE" to console
 	`  
-	 ██╗███╗   ███╗     █████╗ ██╗    ██╗ █████╗ ██╗  ██╗███████╗
-	 ██║████╗ ████║    ██╔══██╗██║    ██║██╔══██╗██║ ██╔╝██╔════╝
-	 ██║██╔████╔██║    ███████║██║ █╗ ██║███████║█████╔╝ █████╗  
-	 ██║██║╚██╔╝██║    ██╔══██║██║███╗██║██╔══██║██╔═██╗ ██╔══╝  
-	 ██║██║ ╚═╝ ██║    ██║  ██║╚███╔███╔╝██║  ██║██║  ██╗███████╗
-	 ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝` + `\n`);
-     console.log(`\x1b[34m%s\x1b[0m`, `▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃` + `\n`);
-});
+	██╗███╗   ███╗     █████╗ ██╗    ██╗ █████╗ ██╗  ██╗███████╗
+	██║████╗ ████║    ██╔══██╗██║    ██║██╔══██╗██║ ██╔╝██╔════╝
+	██║██╔████╔██║    ███████║██║ █╗ ██║███████║█████╔╝ █████╗  
+	██║██║╚██╔╝██║    ██╔══██║██║███╗██║██╔══██║██╔═██╗ ██╔══╝  
+	██║██║ ╚═╝ ██║    ██║  ██║╚███╔███╔╝██║  ██║██║  ██╗███████╗
+	╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝` + `\n`);
+    console.log(`\x1b[34m%s\x1b[0m`, `▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃` + `\n`);
+    });
+
 client.login(token); // Start bot with token
 
 

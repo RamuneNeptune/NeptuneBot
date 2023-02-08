@@ -10,13 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SlashCommandBuilder = void 0;
 // Import / export modules & variables
-exports.SlashCommandBuilder = require('discord.js').SlashCommandBuilder;
 const discord_js_1 = require("discord.js");
 const config_json_1 = require("./config.json");
-const path = require("path");
-const fs = require("fs");
+const typescript = require('typescript');
+const vars_1 = require("./vars");
+const path = require("node:path");
+const fs = require("node:fs");
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 // Create a client for the bot, and set permissions and presence
 const client = new discord_js_1.Client({
@@ -30,18 +30,15 @@ client.once(discord_js_1.Events.ClientReady, _ => {
     console.clear(); // Clear console
     console.log(`\x1b[32m%s\x1b[0m`, // Log "IM AWAKE" to console
     `  
-	 ██╗███╗   ███╗     █████╗ ██╗    ██╗ █████╗ ██╗  ██╗███████╗
-	 ██║████╗ ████║    ██╔══██╗██║    ██║██╔══██╗██║ ██╔╝██╔════╝
-	 ██║██╔████╔██║    ███████║██║ █╗ ██║███████║█████╔╝ █████╗  
-	 ██║██║╚██╔╝██║    ██╔══██║██║███╗██║██╔══██║██╔═██╗ ██╔══╝  
-	 ██║██║ ╚═╝ ██║    ██║  ██║╚███╔███╔╝██║  ██║██║  ██╗███████╗
-	 ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝` + `\n`);
+    ██╗███╗   ███╗     █████╗ ██╗    ██╗ █████╗ ██╗  ██╗███████╗
+    ██║████╗ ████║    ██╔══██╗██║    ██║██╔══██╗██║ ██╔╝██╔════╝
+    ██║██╔████╔██║    ███████║██║ █╗ ██║███████║█████╔╝ █████╗  
+    ██║██║╚██╔╝██║    ██╔══██║██║███╗██║██╔══██║██╔═██╗ ██╔══╝  
+    ██║██║ ╚═╝ ██║    ██║  ██║╚███╔███╔╝██║  ██║██║  ██╗███████╗
+    ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝` + `\n`);
     console.log(`\x1b[34m%s\x1b[0m`, `▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃` + `\n`);
 });
 client.login(config_json_1.token); // Start bot with token
-const yellow = '\x1b[33m'; // Some ANSI color consts for later use
-const green = '\x1b[32m'; // Some ANSI color consts for later use
-const reset = '\x1b[0m'; // Some ANSI color consts for later use
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 // Handle commands
 client.commands = new discord_js_1.Collection();
@@ -60,14 +57,15 @@ for (const file of commandFiles) {
 }
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 // Listen for log files
-client.on('messageCreate', message => {
+client.on('messageCreate', (message) => {
     if (message.attachments.size > 0) {
         for (const [_, attachment] of message.attachments) {
             if (!attachment.name.startsWith("qmodmanager_log"))
                 return; // If the file is not a qmodmanager log, return, else continue
-            console.log(yellow + '1/0:' + reset + ' Found valid logfile from ' + green + `"${message.author.username}"` + reset);
+            console.log(commandsPath);
+            console.log(vars_1.yellow + '1/0:' + vars_1.reset + ' Found valid logfile from ' + vars_1.green + `"${message.author.username}"` + vars_1.reset);
             message.react('✅'); // React to logfile message with checkmark (to signify we are processing it)
-            console.log(yellow + '2/0:' + reset + ' Reacted to logfile message with' + green + "✅" + reset);
+            console.log(vars_1.yellow + '2/0:' + vars_1.reset + ' Reacted to logfile message with' + vars_1.green + "✅" + vars_1.reset);
         }
     }
 });

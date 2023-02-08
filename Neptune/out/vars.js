@@ -4,9 +4,14 @@
 //  ██║   ██║███████║██████╔╝███████╗
 //  ╚██╗ ██╔╝██╔══██║██╔══██╗╚════██║
 //   ╚████╔╝ ██║  ██║██║  ██║███████║
-//    ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝                                                                                                                                                                                                                                                       
+//    ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝       
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Regex_SourceCode = exports.Regex_MissingModJson = exports.Regex_FailedMods = exports.Regex_LoadedMods = exports.Regex_DuplicateMods = exports.Regex_MissingDependencies = exports.Regex_Timestamp = exports.Regex_GameBuild = exports.Regex_SMLHelperBuiltFor = exports.Regex_SMLHelper = exports.Regex_QModManagerBuiltFor = exports.Regex_QModManager = exports.Regex_BZPath = exports.Regex_SNPath = exports.Array_Store_Microsoft = exports.Array_Store_Epic = exports.Array_Store_Steam = exports.Array_Nitrox = exports.Array_Vortex = exports.Array_Pirate = exports.Array_DRM = exports.Array_Symlinks = exports.Error_QMM = exports.Error_Calender = exports.Error_MinimumReq = exports.Error_Shader = exports.General_Crash = exports.General_WrongQMM = exports.General_DebugMode = void 0;
+exports.Regex_SourceCode = exports.Regex_MissingModJson = exports.Regex_FailedMods = exports.Regex_LoadedMods = exports.Regex_DuplicateMods = exports.Regex_MissingDependencies = exports.Regex_Timestamp = exports.Regex_GameBuild = exports.Regex_SMLHelperBuiltFor = exports.Regex_SMLHelper = exports.Regex_QModManagerBuiltFor = exports.Regex_QModManager = exports.Regex_BZPath = exports.Regex_SNPath = exports.Array_Store_Microsoft = exports.Array_Store_Epic = exports.Array_Store_Steam = exports.Array_Nitrox = exports.Array_Vortex = exports.Array_Pirate = exports.Array_DRM = exports.Array_Symlinks = exports.Error_QMM = exports.Error_Calender = exports.Error_MinimumReq = exports.Error_Shader = exports.General_Crash = exports.General_WrongQMM = exports.General_DebugMode = exports.reset = exports.green = exports.yellow = void 0;
+//⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
+// Colors
+exports.yellow = '\x1b[33m'; // Some ANSI color consts for later use
+exports.green = '\x1b[32m'; // Some ANSI color consts for later use
+exports.reset = '\x1b[0m'; // Some ANSI color consts for later use
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 // General
 exports.General_DebugMode = "[QModManager:DEBUG]"; // Debug mode enabled, causes unnecessary logfile bloat

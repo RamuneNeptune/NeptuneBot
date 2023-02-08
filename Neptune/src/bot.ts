@@ -22,8 +22,8 @@ import { /*-------------- Colors --------------*/  yellow, green, reset,
          /*------------- Regex: Duplicates & Source ---*/  Regex_DuplicateMods, Regex_SourceCode, 
         } from './vars';
 
-import path = require('path');
-import fs = require('fs');
+import path = require('node:path');
+import fs = require('node:fs');
 
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
@@ -36,6 +36,13 @@ const client = new Client({
     });
 
 module.exports = client; // Export client to be referenced elsewhere 
+
+interface ExtraProperties { // Some bits to make command handler work
+    commands: Collection<unknown, any>
+}
+declare module 'discord.js' { // Some bits to make command handler work
+    interface Client extends ExtraProperties {} 
+}
 
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
@@ -60,12 +67,35 @@ client.login(token); // Start bot with token
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 
+// Handle commands
+
+client.commands = new Collection();
+
+const commandsPath = path.join(__dirname, 'commands');
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const filePath = path.join(commandsPath, file);
+	const command = require(filePath);
+	// Set a new item in the Collection with the key as the command name and the value as the exported module
+	if ('data' in command && 'execute' in command) {
+		client.commands.set(command.data.name, command);
+	} else {
+		console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+	}
+}
+
+
+//⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
+
 // Listen for log files
 
 client.on('messageCreate', (message: any) => {
     if (message.attachments.size > 0) {
         for (const [_, attachment] of message.attachments) {
             if (!attachment.name.startsWith("qmodmanager_log")) return; // If the file is not a qmodmanager log, return, else continue
+            
+            console.log(commandsPath);
 
             console.log(yellow + '1/0:' + reset + ' Found valid logfile from ' + green + `"${message.author.username}"` + reset); 
 

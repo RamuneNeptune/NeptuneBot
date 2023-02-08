@@ -1,14 +1,10 @@
 {
   "dependencies": {
-    "discord.js": "^14.7.1",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "discord.js": "^14.7.1"
   },
-  
   "devDependencies": {
     "typescript": "^4.9.5"
   },
-
   "scripts": {
     "build": "tsc"
   }

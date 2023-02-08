@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const bot_1 = require("../bot");
+const discord_js_1 = require("discord.js");
 module.exports = {
-    data: new bot_1.SlashCommandBuilder()
+    data: new discord_js_1.SlashCommandBuilder()
         .setName('user')
         .setDescription('Provides information about the user.'),
     execute(interaction) {

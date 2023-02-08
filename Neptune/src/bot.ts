@@ -4,7 +4,6 @@
 
 // Import / export modules & variables
 
-export const { SlashCommandBuilder } = require('discord.js');
 import { Client, EmbedBuilder, Message, Events, GatewayIntentBits, TextChannel, Collection } from 'discord.js';
 import { token } from './config.json';
 const typescript = require('typescript');

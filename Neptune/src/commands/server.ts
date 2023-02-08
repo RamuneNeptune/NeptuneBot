@@ -1,6 +1,6 @@
 
 
-import { SlashCommandBuilder } from '../bot';
+import { SlashCommandBuilder } from 'discord.js';
 
 module.exports = {
 	data: new SlashCommandBuilder()

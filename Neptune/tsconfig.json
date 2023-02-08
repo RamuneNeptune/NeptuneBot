@@ -5,7 +5,9 @@
       "target": "es6",
       "moduleResolution": "node",
       "resolveJsonModule": true,
-      "module": "commonjs"
+      "module": "commonjs",
+      "checkJs": true,
+      "pretty": true,
     },
     "include": [
       "src/**/*"

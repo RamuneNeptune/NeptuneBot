@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "outDir": "out",
+      "allowJs": true,
+      "target": "es6",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "module": "commonjs"
+    },
+    "include": [
+      "src/**/*"
+    ]
+}

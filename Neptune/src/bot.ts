@@ -7,6 +7,8 @@
 export const { SlashCommandBuilder } = require('discord.js');
 import { Client, EmbedBuilder, Message, Events, GatewayIntentBits, TextChannel, Collection } from 'discord.js';
 import { token } from './config.json';
+const typescript = require('typescript');
+
 import { /*-------------- Colors --------------*/  yellow, green, reset,
          /*-------------- General -------------*/  General_DebugMode, General_WrongQMM, General_Crash,
          /*-------------- Errors --------------*/  Error_Shader, Error_MinimumReq, Error_Calender, Error_QMM,
@@ -61,7 +63,7 @@ client.login(token); // Start bot with token
 
 // Listen for log files
 
-client.on('messageCreate', message => {
+client.on('messageCreate', (message: any) => {
     if (message.attachments.size > 0) {
         for (const [_, attachment] of message.attachments) {
             if (!attachment.name.startsWith("qmodmanager_log")) return; // If the file is not a qmodmanager log, return, else continue
@@ -78,7 +80,7 @@ client.on('messageCreate', message => {
 
 // Listen for messages
 
-client.on('messageCreate', async message => {
+client.on('messageCreate', async (message: any) => {
     if(!message.content.startsWith('die')) return; // If message starts with "die", continue
     if(!message.member.permissions.has('Administrator'))  // If user does has administrator perm, continue
     { 

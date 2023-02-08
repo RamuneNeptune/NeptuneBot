@@ -2,18 +2,18 @@
 
 <br></br>
 
----
+
 ## Table of Contents
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 * [How does it work?](https://github.com/RamuneNeptune/NeptuneBot/blob/main/README.md#how-does-it-work)
 * [Current checks](https://github.com/RamuneNeptune/NeptuneBot/blob/main/README.md#currently-have-implemented-checks-for)
 * [Usage examples](https://github.com/RamuneNeptune/NeptuneBot#some-usage-examples)
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
----
+
 
 <br></br>
 
----
+
 ## How does it work?
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #### 1. A user sends a log file in the Subnautica Modding discord server
@@ -22,11 +22,11 @@
 #### 4. Sends the relevant information back in an embed
 #### 5. Deletes the log file
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
----
+
 
 <br></br>
 
----
+
 ## Currently have implemented checks for:
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  * ThunderstoreModManager, Vortex, and Nitrox
@@ -44,7 +44,7 @@
  * Pirates!
 ##### + A bunch of common errors
 ##### ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
----
+
 
 <br></br>
 

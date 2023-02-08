@@ -31,7 +31,7 @@ import fs = require('fs');
 
 const client = new Client({
     intents: [ GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent ], // Set perms
-	presence: { activities: [{ name: 'with logfiles..',  type: 0 }], status: 'dnd' } // Set presence
+    presence: { activities: [{ name: 'with logfiles..',  type: 0 }], status: 'dnd' } // Set presence
     });
 
 module.exports = client; // Export client to be referenced elsewhere 
@@ -42,7 +42,7 @@ module.exports = client; // Export client to be referenced elsewhere
 // When bot is ready, do the following
 
 client.once(Events.ClientReady, _ => {
-	console.clear(); // Clear console
+    console.clear(); // Clear console
     console.log(`\x1b[32m%s\x1b[0m`, // Log "IM AWAKE" to console
 	`  
 	██╗███╗   ███╗     █████╗ ██╗    ██╗ █████╗ ██╗  ██╗███████╗
@@ -62,17 +62,17 @@ client.login(token); // Start bot with token
 // Listen for log files
 
 client.on('messageCreate', message => {
-	if (message.attachments.size > 0) {
-		for (const [_, attachment] of message.attachments) {
-			if (!attachment.name.startsWith("qmodmanager_log")) return; // If the file is not a qmodmanager log, return, else continue
+    if (message.attachments.size > 0) {
+        for (const [_, attachment] of message.attachments) {
+            if (!attachment.name.startsWith("qmodmanager_log")) return; // If the file is not a qmodmanager log, return, else continue
 
             console.log(yellow + '1/0:' + reset + ' Found valid logfile from ' + green + `"${message.author.username}"` + reset); 
 
             message.react('✅'); // React to logfile message with checkmark (to signify we are processing it)
 
             console.log(yellow + '2/0:' + reset + ' Reacted to logfile message with' + green + "✅" + reset); 
-		}
-	}
+        }
+    }
 });
 
 

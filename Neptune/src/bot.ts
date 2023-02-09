@@ -8,7 +8,7 @@ import { Client, EmbedBuilder, Message, Events, GatewayIntentBits, TextChannel, 
 import { token } from './config.json';
 const typescript = require('typescript');
 
-import { /*-------------- Colors --------------*/  yellow, green, reset,
+import { /*-------------- Colors --------------*/  red, yellow, green, reset,
          /*-------------- General -------------*/  General_DebugMode, General_WrongQMM, General_Crash,
          /*-------------- Errors --------------*/  Error_Shader, Error_MinimumReq, Error_Calender, Error_QMM,
          /*-------------- Arrays --------------*/  Array_Symlinks, Array_DRM, Array_Pirate, Array_Vortex, Array_Nitrox, Array_Store_Steam, Array_Store_Epic, Array_Store_Microsoft,
@@ -32,17 +32,10 @@ import fs = require('node:fs');
 
 const client = new Client({
     intents: [ GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent ], // Set perms
-    presence: { activities: [{ name: 'with logfiles..',  type: 0 }], status: 'dnd' } // Set presence
+    presence: { activities: [{ name: 'with logfiles',  type: 0 }], status: 'dnd' } // Set presence
     });
 
 module.exports = client; // Export client to be referenced elsewhere 
-
-interface ExtraProperties { // Some bits to make command handler work
-    commands: Collection<unknown, any>
-}
-declare module 'discord.js' { // Some bits to make command handler work
-    interface Client extends ExtraProperties {} 
-}
 
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
@@ -67,41 +60,25 @@ client.login(token); // Start bot with token
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 
-// Handle commands
-
-client.commands = new Collection();
-
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	// Set a new item in the Collection with the key as the command name and the value as the exported module
-	if ('data' in command && 'execute' in command) {
-		client.commands.set(command.data.name, command);
-	} else {
-		console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
-	}
-}
-
-
-//⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
-
 // Listen for log files
 
-client.on('messageCreate', (message: any) => {
+client.on('messageCreate', async (message: any) => {
     if (message.attachments.size > 0) {
         for (const [_, attachment] of message.attachments) {
             if (!attachment.name.startsWith("qmodmanager_log")) return; // If the file is not a qmodmanager log, return, else continue
-            
-            console.log(commandsPath);
+            console.log(yellow + '1/7:' + reset + ' Found valid logfile from ' + green + `"${message.author.username}"` + reset); // Log to console 
+            const msg: Message = await message.reply("> Processing logfile..") // Reply to user message
+            console.log(yellow + '2/7:' + reset + ' Replied to logfile message'); // Log to console 
 
-            console.log(yellow + '1/0:' + reset + ' Found valid logfile from ' + green + `"${message.author.username}"` + reset); 
+            download(attachment.url, attachment.id).then(() => {
+                console.log(yellow + '4/7:' + reset + ' Successfully downloaded logfile as ' + green + `"` + attachment.id + `"` + reset);
+            }).catch((err) => {
+                console.log(yellow + '4/7:' + reset + red + `Failed while downloading "` + attachment.id + `"` + reset);
+            });
 
-            message.react('✅'); // React to logfile message with checkmark (to signify we are processing it)
-
-            console.log(yellow + '2/0:' + reset + ' Reacted to logfile message with' + green + "✅" + reset); 
+            setTimeout(() => {
+                checkLogfile(attachment.id, msg, message.author.username, message.author.avatarURL({ size: 128, extension: 'png' }));
+            }, 1000);
         }
     }
 });
@@ -137,3 +114,155 @@ client.on('messageCreate', async (message: any) => {
 
 
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
+
+// Function to download the logfile using it's attachment.url
+
+import { get } from 'https';
+import { existsSync, mkdirSync, createWriteStream } from "fs";
+
+// DOWNLOAD LOG FILE
+function download(url: string, id: string) {
+    return new Promise((resolve, reject) => {
+        if (!existsSync('./logs')) {
+            mkdirSync('./logs');
+        }
+        console.log(yellow + '3/7:' + reset + ' Downloading logfile as ' + green + `"` + id + `"` + reset);
+
+        get(url, (result) => {
+            result.on("error", (err) => {
+            console.error(err);
+            reject(err);
+        });
+        const stream = result.pipe(createWriteStream("./logs/" + id + ".txt"));
+        stream.on('finish', () => {
+            resolve(id);
+        });
+    });
+});
+}
+
+
+//⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
+
+// Function to check the downloaded logfile
+
+function checkLogfile(id: any, message: Message, username: string, avatarURL: string) {
+    fs.readFile(`./logs/${id}.txt`, 'utf8', (err, data) => {
+        if (err) console.log(err);
+        let msg = "";
+
+		function checkArray(arrayToSearch: string[], title: string, description: string) {
+			for (let i = 0; i < arrayToSearch.length; i++) {
+				if (data.includes(arrayToSearch[i])) {
+					embed.addFields({ name: title, value: description })
+					break;
+				}
+			}
+		}
+
+        // Checks the pirate array for a match in the logfile
+		function checkPirateArray(arrayToSearch: string[]) {
+			for (let i = 0; i < arrayToSearch.length; i++) {
+				if (data.includes(arrayToSearch[i])) {
+					return true;
+				}
+			}
+		}
+
+        // Checks a string for a match in the logfile
+		function checkString(stringToSearch: string, outputIfFound: string) {
+			if (data.includes(stringToSearch)) {
+				msg += outputIfFound;
+			}
+		}
+
+        // Checks a regex string for a match (or matches) in the logfile
+		function checkRegex(regex: RegExp) {
+			if (data.match(regex)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+        // General Info Regex
+        const SNPath = checkRegex(Regex_SNPath) ? data.match(Regex_SNPath)[1] : "N/A";
+        const BZPath = checkRegex(Regex_BZPath) ? data.match(Regex_BZPath)[1] : "N/A";
+        const Timestamp = checkRegex(Regex_Timestamp) ? data.match(Regex_Timestamp)[1] : "N/A";
+        const GameBuild = checkRegex(Regex_GameBuild) ? data.match(Regex_GameBuild)[1] : "N/A";
+
+        // QModManager & SMLHelper Regex
+        const QMM = checkRegex(Regex_QModManager) ? data.match(Regex_QModManager)[1] : "N/A";
+        const QMMBuiltFor = checkRegex(Regex_QModManagerBuiltFor) ? data.match(Regex_QModManagerBuiltFor)[1] : "N/A";
+        const SML = checkRegex(Regex_SMLHelper) ? data.match(Regex_SMLHelper)[1] : "N/A";
+        const SMLBuiltFor = checkRegex(Regex_SMLHelperBuiltFor) ? data.match(Regex_SMLHelperBuiltFor)[1] : "N/A";
+
+        // Error Regex
+        const ModsLoaded = checkRegex(Regex_LoadedMods) ? data.match(Regex_LoadedMods)[1] : "N/A";
+        const MissingDeps = checkRegex(Regex_MissingDependencies) ? data.match(Regex_MissingDependencies)[1] : "N/A";
+        const FailedMods = checkRegex(Regex_FailedMods) ? data.match(Regex_FailedMods)[1] : "N/A";
+        const DuplicateMods = checkRegex(Regex_DuplicateMods) ? data.match(Regex_DuplicateMods)[1] : "N/A";
+        const SourceMods = checkRegex(Regex_SourceCode) ? data.match(Regex_SourceCode).filter(mod => mod !== ',' && mod !== ' ' && mod !== '`').join('`\n') : "N/A";
+        const MissingJson = checkRegex(Regex_MissingModJson) ? data.match(Regex_MissingModJson)[1] : "N/A";
+
+        
+        // Write our embeds to send to the user once the logfile is processed
+		const embed = new EmbedBuilder();
+		if (checkPirateArray(Array_Pirate)) { // Embed to send if the user is a pirate
+			embed.setColor('#ff0000')
+				.setTitle("🏴‍☠️ Ahoy, matey! Yer game be pirated! 🏴‍☠️")
+				.setFooter({ text: `${username}, welcome to the pirate club!`, iconURL: avatarURL ? avatarURL : null })
+				.addFields({name: "", value: " Buy the game if you want support with modding it\nYou can use https://isthereanydeal.com/ to find discounts"});
+
+		} else { // Embed to send if the user is seemingly legit
+			embed.setColor('#0099ff')
+				.setFooter({ text: username, iconURL: avatarURL ? avatarURL : null })
+				.addFields(
+					{ name: 'QModManager', value: `\`\`\`${QMM} for ${QMMBuiltFor}\`\`\``, inline: true },
+					{ name: 'SMLHelper', value: `\`\`\`${SML} for ${SMLBuiltFor}\`\`\``, inline: true }
+				);
+
+
+            // If a path for Subnautica is found, we append it to the embed description
+			if (SNPath != "N/A") {
+				embed.setDescription(`\`${SNPath}\``)
+					.addFields({ name: 'Information', value: `\`\`\`${Timestamp}\nSubnautica ${GameBuild}\n${ModsLoaded} mods loaded\`\`\`` });
+
+            // If a path for Below Zero is found, we append it to the embed description
+			} else if (BZPath != "N/A") { 
+				embed.setDescription(`\`${BZPath}\``)
+					.addFields({ name: 'Information', value: `\`\`\`${Timestamp}\nBelow Zero ${GameBuild}\n${ModsLoaded} mods loaded\`\`\`` });
+
+            // If no path is found, we append "Path to game N/A" to the embed description
+			}else {
+                embed.setDescription(`Path to game N/A`)
+            }
+
+
+            if (MissingDeps != "N/A") {
+				embed.addFields({ name: 'Missing Dependencies', value: `\`\`\`${MissingDeps}\`\`\`` });
+			}
+			if (MissingJson != "N/A") {
+				embed.addFields({ name: 'Missing mod.json', value: `\`\`\`${MissingJson}\`\`\`` });
+			}
+			if (DuplicateMods != "N/A") {
+				embed.addFields({ name: 'Duplicate Mods', value: `\`\`\`${DuplicateMods}\`\`\`` });
+			}
+			if (SourceMods != "N/A") {
+				embed.addFields({ name: 'Source Code', value: `\`\`\`${SourceMods}\`\`\`` });
+			}
+			if (FailedMods != "N/A") {
+				embed.addFields({ name: 'Failed to load', value: `\`\`\`${FailedMods}\`\`\`` });
+			}
+        }
+
+
+        setTimeout(() => {
+            message.edit('⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻');
+			message.edit({ embeds: [embed] });
+			fs.unlinkSync('./logs/' + id + '.txt');
+            console.log(yellow + '6/7:' + reset + ' Finished processing logfile'); // Log to console 
+            console.log(yellow + '7/7:' + reset + ' All tasks complete' + `\n` + green + `⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻` + reset + `\n`); // Log to console 
+		}, 1400);
+    });
+}

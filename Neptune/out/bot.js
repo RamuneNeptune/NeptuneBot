@@ -45,49 +45,42 @@ client.on('messageCreate', (message) => __awaiter(void 0, void 0, void 0, functi
         for (const [_, attachment] of message.attachments) {
             if (!attachment.name.startsWith("qmodmanager_log"))
                 return; // If the file is not a qmodmanager log, return, else continue
+            const replyEmbed = new discord_js_1.EmbedBuilder();
+            replyEmbed.setColor('#ff0000')
+                .setTitle('Your logfile is being processed..');
             console.log(vars_1.yellow + '1/7:' + vars_1.reset + ' Found valid logfile from ' + vars_1.green + `"${message.author.username}"` + vars_1.reset); // Log to console 
-            const msg = yield message.reply("> Processing logfile.."); // Reply to user message
+            const msg = yield message.reply({ embeds: [replyEmbed] }); // Reply to user message with an embed
             console.log(vars_1.yellow + '2/7:' + vars_1.reset + ' Replied to logfile message'); // Log to console 
             download(attachment.url, attachment.id).then(() => {
-                console.log(vars_1.yellow + '4/7:' + vars_1.reset + ' Successfully downloaded logfile as ' + vars_1.green + `"` + attachment.id + `"` + vars_1.reset);
-            }).catch((err) => {
-                console.log(vars_1.yellow + '4/7:' + vars_1.reset + vars_1.red + `Failed while downloading "` + attachment.id + `"` + vars_1.reset);
+                console.log(vars_1.yellow + '4/7:' + vars_1.reset + ' Successfully downloaded logfile as ' + vars_1.green + `"` + attachment.id + `"` + vars_1.reset); // Yay it worked, log to console
             });
             setTimeout(() => {
-                checkLogfile(attachment.id, msg, message.author.username, message.author.avatarURL({ size: 128, extension: 'png' }));
+                checkLogfile(attachment.id, msg, message.author.username, message.author.avatarURL({ size: 128, extension: 'png' })); // BREACH THE MAINFRAME
             }, 1000);
         }
     }
 }));
-// Listen for messages
+// Listen for message
 client.on('messageCreate', (message) => __awaiter(void 0, void 0, void 0, function* () {
     if (!message.content.startsWith('die'))
         return; // If message starts with "die", continue
     if (!message.member.permissions.has('Administrator')) // If user does has administrator perm, continue
      {
-        message.react('❌');
-        const msg = yield message.reply("> **Missing Perms for:** `die`"); // Reply to user message
-        setTimeout(() => {
-            msg.delete();
-            message.delete();
-        }, 1700); // Delete after 1.7 seconds
+        message.react('❌'); // User does not have admin perms, react accordingly
         return;
     }
-    message.react('✅'); // React to use message
-    const msg_ = yield message.reply("> **Executing:** `die`"); // Reply to user message
+    message.react('✅'); // User does have admin perms, react accordingly
     setTimeout(() => {
-        msg_.delete();
         message.delete();
-    }, 1700); // Delete after 1.7 seconds
+    }, 500); // Delete after 0.5 seconds
     setTimeout(() => {
         process.exit();
-    }, 3400); // Kill after 3.4 seconds (needs to be delayed quite a bit otherwise it will not delete both messages)
+    }, 1000); // Kill after 1.0 seconds 
 }));
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
 // Function to download the logfile using it's attachment.url
 const https_1 = require("https");
 const fs_1 = require("fs");
-// DOWNLOAD LOG FILE
 function download(url, id) {
     return new Promise((resolve, reject) => {
         if (!(0, fs_1.existsSync)('./logs')) {
@@ -113,7 +106,7 @@ function checkLogfile(id, message, username, avatarURL) {
         if (err)
             console.log(err);
         let msg = "";
-        console.log(vars_1.yellow + '5/7:' + vars_1.reset + ' Processing logfile..'); // Log to console 
+        // Check an array for a match in the logfile
         function checkArray(arrayToSearch, title, description) {
             for (let i = 0; i < arrayToSearch.length; i++) {
                 if (data.includes(arrayToSearch[i])) {
@@ -188,19 +181,19 @@ function checkLogfile(id, message, username, avatarURL) {
             else {
                 embed.setDescription(`Path to game N/A`);
             }
-            if (MissingDeps != "N/A") {
+            if (MissingDeps != "N/A") { // If missing dependencies are found, we add them in a list as a field to the embed
                 embed.addFields({ name: 'Missing Dependencies', value: `\`\`\`${MissingDeps}\`\`\`` });
             }
-            if (MissingJson != "N/A") {
+            if (MissingJson != "N/A") { // If missing mod.json's are found, we add them in a list as a field to the embed
                 embed.addFields({ name: 'Missing mod.json', value: `\`\`\`${MissingJson}\`\`\`` });
             }
-            if (DuplicateMods != "N/A") {
+            if (DuplicateMods != "N/A") { // If duplicate mods are found, we add them in a list as a field to the embed
                 embed.addFields({ name: 'Duplicate Mods', value: `\`\`\`${DuplicateMods}\`\`\`` });
             }
-            if (SourceMods != "N/A") {
+            if (SourceMods != "N/A") { // If source code files are found, we add them in a list as a field to the embed
                 embed.addFields({ name: 'Source Code', value: `\`\`\`${SourceMods}\`\`\`` });
             }
-            if (FailedMods != "N/A") {
+            if (FailedMods != "N/A") { // If mods that failed to load are found, we add them in a list as a field to the embed
                 embed.addFields({ name: 'Failed to load', value: `\`\`\`${FailedMods}\`\`\`` });
             }
         }

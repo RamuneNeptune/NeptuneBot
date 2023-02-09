@@ -67,27 +67,21 @@ client.on('messageCreate', async (message: any) => {
         for (const [_, attachment] of message.attachments) {
             if (!attachment.name.startsWith("qmodmanager_log")) return; // If the file is not a qmodmanager log, return, else continue
 
-
             const replyEmbed = new EmbedBuilder();
-            replyEmbed.setColor('#ff0000')
+            replyEmbed.setColor('#e5c40f')
             .setTitle('Your logfile is being processed..')
-
 
             console.log(yellow + '1/7:' + reset + ' Found valid logfile from ' + green + `"${message.author.username}"` + reset); // Log to console 
             const msg: Message = await message.reply({ embeds: [replyEmbed] }) // Reply to user message with an embed
             console.log(yellow + '2/7:' + reset + ' Replied to logfile message'); // Log to console 
 
-
             download(attachment.url, attachment.id).then(() => { // Download the logfile
                 console.log(yellow + '4/7:' + reset + ' Successfully downloaded logfile as ' + green + `"` + attachment.id + `"` + reset); // Yay it worked, log to console
             });
 
-
             setTimeout(() => { // Wait 1 second then check the downloaded logfile
                 checkLogfile(attachment.id, msg, message.author.username, message.author.avatarURL({ size: 128, extension: 'png' })); // BREACH THE MAINFRAME
             }, 1000);
-
-
         }
     }
 });
@@ -259,7 +253,6 @@ function checkLogfile(id: any, message: Message, username: string, avatarURL: st
 
 
         setTimeout(() => {
-            message.edit('⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻');
 			message.edit({ embeds: [embed] });
 			fs.unlinkSync('./logs/' + id + '.txt');
             console.log(yellow + '6/7:' + reset + ' Finished processing logfile'); // Log to console 

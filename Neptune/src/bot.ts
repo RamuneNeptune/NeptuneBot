@@ -6,8 +6,6 @@
 
 import { Client, EmbedBuilder, Message, Events, GatewayIntentBits, TextChannel, Collection } from 'discord.js';
 import { token } from './config.json';
-const typescript = require('typescript');
-
 import { /*-------------- Colors --------------*/  red, yellow, green, reset,
          /*-------------- General -------------*/  General_DebugMode, General_WrongQMM, General_Crash,
          /*-------------- Errors --------------*/  Error_Shader, Error_MinimumReq, Error_Calender, Error_QMM,

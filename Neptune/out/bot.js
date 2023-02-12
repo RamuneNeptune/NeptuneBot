@@ -13,7 +13,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Import / export modules & variables
 const discord_js_1 = require("discord.js");
 const config_json_1 = require("./config.json");
-const typescript = require('typescript');
 const vars_1 = require("./vars");
 const fs = require("node:fs");
 //⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻//
@@ -46,7 +45,7 @@ client.on('messageCreate', (message) => __awaiter(void 0, void 0, void 0, functi
             if (!attachment.name.startsWith("qmodmanager_log"))
                 return; // If the file is not a qmodmanager log, return, else continue
             const replyEmbed = new discord_js_1.EmbedBuilder();
-            replyEmbed.setColor('#ff0000')
+            replyEmbed.setColor('#e5c40f')
                 .setTitle('Your logfile is being processed..');
             console.log(vars_1.yellow + '1/7:' + vars_1.reset + ' Found valid logfile from ' + vars_1.green + `"${message.author.username}"` + vars_1.reset); // Log to console 
             const msg = yield message.reply({ embeds: [replyEmbed] }); // Reply to user message with an embed
@@ -198,7 +197,6 @@ function checkLogfile(id, message, username, avatarURL) {
             }
         }
         setTimeout(() => {
-            message.edit('⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻');
             message.edit({ embeds: [embed] });
             fs.unlinkSync('./logs/' + id + '.txt');
             console.log(vars_1.yellow + '6/7:' + vars_1.reset + ' Finished processing logfile'); // Log to console 
